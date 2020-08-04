@@ -3,7 +3,7 @@
 
 /**
  * A helper file for Laravel, to provide autocomplete information to your IDE
- * Generated for Laravel 7.22.4 on 2020-08-03 08:53:39.
+ * Generated for Laravel 7.22.4 on 2020-08-04 00:58:54.
  *
  * This file should not be included in your code, only analyzed by your IDE!
  *
@@ -11251,6 +11251,16 @@ namespace Illuminate\Support\Facades {
         {
                         return \Illuminate\Routing\ResponseFactory::hasMacro($name);
         }
+        
+        /**
+         * 
+         *
+         * @static 
+         */ 
+        public static function jsonApi($api = null)
+        {
+                        return \Illuminate\Routing\ResponseFactory::jsonApi($api);
+        }
          
     }
 
@@ -12156,6 +12166,46 @@ namespace Illuminate\Support\Facades {
         {
                         /** @var \Illuminate\Routing\Router $instance */
                         return $instance->macroCall($method, $parameters);
+        }
+        
+        /**
+         * 
+         *
+         * @static 
+         */ 
+        public static function auth($options = [])
+        {
+                        return \Illuminate\Routing\Router::auth($options);
+        }
+        
+        /**
+         * 
+         *
+         * @static 
+         */ 
+        public static function resetPassword()
+        {
+                        return \Illuminate\Routing\Router::resetPassword();
+        }
+        
+        /**
+         * 
+         *
+         * @static 
+         */ 
+        public static function confirmPassword()
+        {
+                        return \Illuminate\Routing\Router::confirmPassword();
+        }
+        
+        /**
+         * 
+         *
+         * @static 
+         */ 
+        public static function emailVerification()
+        {
+                        return \Illuminate\Routing\Router::emailVerification();
         }
          
     }
@@ -15338,15 +15388,102 @@ namespace Illuminate\Support {
      *
      */ 
     class Str {
+         
+    }
+ 
+}
+
+namespace CloudCreativity\LaravelJsonApi\Facades { 
+
+    /**
+     * Class JsonApi
+     *
+     * @package CloudCreativity\LaravelJsonApi
+     */ 
+    class JsonApi {
+        
+        /**
+         * Get an API by name.
+         *
+         * @param string|null $apiName
+         * @param string|null $host
+         * @param array $parameters
+         * @return \CloudCreativity\LaravelJsonApi\Services\Api 
+         * @throws RuntimeException
+         *      if the API name is invalid.
+         * @static 
+         */ 
+        public static function api($apiName = null, $host = null, $parameters = [])
+        {
+                        /** @var \CloudCreativity\LaravelJsonApi\Services\JsonApiService $instance */
+                        return $instance->api($apiName, $host, $parameters);
+        }
+        
+        /**
+         * Get the current JSON API route.
+         *
+         * @return \Route 
+         * @static 
+         */ 
+        public static function currentRoute()
+        {
+                        /** @var \CloudCreativity\LaravelJsonApi\Services\JsonApiService $instance */
+                        return $instance->currentRoute();
+        }
+        
+        /**
+         * Get the API that is handling the inbound HTTP request.
+         *
+         * @return \CloudCreativity\LaravelJsonApi\Services\Api|null the API, or null if the there is no inbound JSON API HTTP request.
+         * @static 
+         */ 
+        public static function requestApi()
+        {
+                        /** @var \CloudCreativity\LaravelJsonApi\Services\JsonApiService $instance */
+                        return $instance->requestApi();
+        }
+        
+        /**
+         * Get either the request API or the default API.
+         *
+         * @param string|null $host
+         * @param array $parameters
+         * @return \CloudCreativity\LaravelJsonApi\Services\Api 
+         * @static 
+         */ 
+        public static function requestApiOrDefault($host = null, $parameters = [])
+        {
+                        /** @var \CloudCreativity\LaravelJsonApi\Services\JsonApiService $instance */
+                        return $instance->requestApiOrDefault($host, $parameters);
+        }
         
         /**
          * 
          *
+         * @return \CloudCreativity\LaravelJsonApi\Services\Api 
+         * @throws RuntimeException
+         *      if there is no JSON API handling the inbound request.
          * @static 
          */ 
-        public static function sku($source, $separator = null)
+        public static function requestApiOrFail()
         {
-                        return \Illuminate\Support\Str::sku($source, $separator);
+                        /** @var \CloudCreativity\LaravelJsonApi\Services\JsonApiService $instance */
+                        return $instance->requestApiOrFail();
+        }
+        
+        /**
+         * Register the routes for an API.
+         *
+         * @param $apiName
+         * @param array|\Closure $options
+         * @param \Closure|null $routes
+         * @return \CloudCreativity\LaravelJsonApi\Services\ApiRegistration 
+         * @static 
+         */ 
+        public static function register($apiName, $options = [], $routes = null)
+        {
+                        /** @var \CloudCreativity\LaravelJsonApi\Services\JsonApiService $instance */
+                        return $instance->register($apiName, $options, $routes);
         }
          
     }
@@ -15612,190 +15749,6 @@ namespace Facade\Ignition\Facades {
         {
                         /** @var \Facade\FlareClient\Flare $instance */
                         return $instance->group($groupName, $properties);
-        }
-         
-    }
- 
-}
-
-namespace Yajra\DataTables\Facades { 
-
-    /**
-     * 
-     *
-     * @mixin \Yajra\DataTables\DataTables
-     * @see \Yajra\DataTables\DataTables
-     */ 
-    class DataTables {
-        
-        /**
-         * Make a DataTable instance from source.
-         * 
-         * Alias of make for backward compatibility.
-         *
-         * @param mixed $source
-         * @return mixed 
-         * @throws \Exception
-         * @static 
-         */ 
-        public static function of($source)
-        {
-                        return \Yajra\DataTables\DataTables::of($source);
-        }
-        
-        /**
-         * Make a DataTable instance from source.
-         *
-         * @param mixed $source
-         * @return mixed 
-         * @throws \Exception
-         * @static 
-         */ 
-        public static function make($source)
-        {
-                        return \Yajra\DataTables\DataTables::make($source);
-        }
-        
-        /**
-         * Get request object.
-         *
-         * @return \Yajra\DataTables\Utilities\Request 
-         * @static 
-         */ 
-        public static function getRequest()
-        {
-                        /** @var \Yajra\DataTables\DataTables $instance */
-                        return $instance->getRequest();
-        }
-        
-        /**
-         * Get config instance.
-         *
-         * @return \Yajra\DataTables\Utilities\Config 
-         * @static 
-         */ 
-        public static function getConfig()
-        {
-                        /** @var \Yajra\DataTables\DataTables $instance */
-                        return $instance->getConfig();
-        }
-        
-        /**
-         * 
-         *
-         * @deprecated Please use query() instead, this method will be removed in a next version.
-         * @param $builder
-         * @return \Yajra\DataTables\QueryDataTable 
-         * @static 
-         */ 
-        public static function queryBuilder($builder)
-        {
-                        /** @var \Yajra\DataTables\DataTables $instance */
-                        return $instance->queryBuilder($builder);
-        }
-        
-        /**
-         * DataTables using Query.
-         *
-         * @param \Illuminate\Database\Query\Builder|mixed $builder
-         * @return \Yajra\DataTables\DataTableAbstract|\Yajra\DataTables\QueryDataTable 
-         * @static 
-         */ 
-        public static function query($builder)
-        {
-                        /** @var \Yajra\DataTables\DataTables $instance */
-                        return $instance->query($builder);
-        }
-        
-        /**
-         * DataTables using Eloquent Builder.
-         *
-         * @param \Illuminate\Database\Eloquent\Builder|mixed $builder
-         * @return \Yajra\DataTables\DataTableAbstract|\Yajra\DataTables\EloquentDataTable 
-         * @static 
-         */ 
-        public static function eloquent($builder)
-        {
-                        /** @var \Yajra\DataTables\DataTables $instance */
-                        return $instance->eloquent($builder);
-        }
-        
-        /**
-         * DataTables using Collection.
-         *
-         * @param \Illuminate\Support\Collection|array $collection
-         * @return \Yajra\DataTables\DataTableAbstract|\Yajra\DataTables\CollectionDataTable 
-         * @static 
-         */ 
-        public static function collection($collection)
-        {
-                        /** @var \Yajra\DataTables\DataTables $instance */
-                        return $instance->collection($collection);
-        }
-        
-        /**
-         * DataTables using Collection.
-         *
-         * @param \Illuminate\Http\Resources\Json\AnonymousResourceCollection|array $collection
-         * @return \Yajra\DataTables\DataTableAbstract|\Yajra\DataTables\ApiResourceDataTable 
-         * @static 
-         */ 
-        public static function resource($resource)
-        {
-                        /** @var \Yajra\DataTables\DataTables $instance */
-                        return $instance->resource($resource);
-        }
-        
-        /**
-         * Get html builder instance.
-         *
-         * @return \Yajra\DataTables\Html\Builder 
-         * @throws \Exception
-         * @static 
-         */ 
-        public static function getHtmlBuilder()
-        {
-                        /** @var \Yajra\DataTables\DataTables $instance */
-                        return $instance->getHtmlBuilder();
-        }
-        
-        /**
-         * Register a custom macro.
-         *
-         * @param string $name
-         * @param object|callable $macro
-         * @return void 
-         * @static 
-         */ 
-        public static function macro($name, $macro)
-        {
-                        \Yajra\DataTables\DataTables::macro($name, $macro);
-        }
-        
-        /**
-         * Mix another object into the class.
-         *
-         * @param object $mixin
-         * @param bool $replace
-         * @return void 
-         * @throws \ReflectionException
-         * @static 
-         */ 
-        public static function mixin($mixin, $replace = true)
-        {
-                        \Yajra\DataTables\DataTables::mixin($mixin, $replace);
-        }
-        
-        /**
-         * Checks if macro is registered.
-         *
-         * @param string $name
-         * @return bool 
-         * @static 
-         */ 
-        public static function hasMacro($name)
-        {
-                        return \Yajra\DataTables\DataTables::hasMacro($name);
         }
          
     }
@@ -18753,9 +18706,9 @@ namespace  {
 
     class View extends \Illuminate\Support\Facades\View {}
 
-    class Flare extends \Facade\Ignition\Facades\Flare {}
+    class JsonApi extends \CloudCreativity\LaravelJsonApi\Facades\JsonApi {}
 
-    class DataTables extends \Yajra\DataTables\Facades\DataTables {}
+    class Flare extends \Facade\Ignition\Facades\Flare {}
  
 }
 
