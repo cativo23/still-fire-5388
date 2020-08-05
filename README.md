@@ -5,6 +5,10 @@ Still Fire implements the JSON:API specification that allows making CRUD operati
 JSON:API is a specification for how a client should request that resources be fetched or modified, and how a server should respond to those requests. 
 It is designed to minimize both the number of requests and the amount of data transmitted between clients and servers. This efficiency is achieved without compromising readability, flexibility, or discoverability.
 
+# API Documentation
+
+You can view the API documentation [here](https://documenter.getpostman.com/view/6688576/T1LFoAP9?version=latest)
+
 # Prerequisites
 
 The Laravel JSON:API project requires a working Apache/Nginx local environment with PHP, Composer and MySQL.
