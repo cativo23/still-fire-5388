@@ -1,7 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="d58c4783-8400-4043-a2b5-647431523def" name="Default Changelist" comment="" />
+    <list default="true" id="d58c4783-8400-4043-a2b5-647431523def" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/scripts/install_node_dependencies.sh" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/appspec.yml" beforeDir="false" afterPath="$PROJECT_DIR$/appspec.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/scripts/install_composer_dependencies.sh" beforeDir="false" afterPath="$PROJECT_DIR$/scripts/install_composer_dependencies.sh" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -188,7 +193,7 @@
       <workItem from="1596511490503" duration="977000" />
       <workItem from="1596515451618" duration="19757000" />
       <workItem from="1596572296800" duration="315000" />
-      <workItem from="1596579983071" duration="4776000" />
+      <workItem from="1596579983071" duration="6077000" />
     </task>
     <servers />
   </component>
