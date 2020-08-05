@@ -27,7 +27,7 @@ use Laravel\Passport\Token;
  * @property Carbon|null $created_at
  * @property Carbon|null $updated_at
  * @property string $username
- * @property string $birthday
+ * @property Carbon $birthday
  * @property-read DatabaseNotificationCollection|DatabaseNotification[] $notifications
  * @property-read int|null $notifications_count
  * @method static Builder|User newModelQuery()

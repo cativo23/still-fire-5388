@@ -10,11 +10,11 @@ $factory->define(Product::class, function (Faker $faker) {
     $faker->addProvider(new Commerce($faker));
     $name = $faker->productName();
     return [
-        'sku'=>$faker->sku('name', '-'),
-        'name'=>$faker->productName(),
+        'sku'=>$faker->sku($name, '-'),
+        'name'=>$name,
         'quantity'=>$faker->randomNumber(),
         'price'=>$faker->randomFloat(2,9.99, 999999.99),
         'description'=>$faker->paragraph,
-        'image'=>$faker->image(),
+        'image'=>$faker->image('public/storage/images',400,300, null, false) ,
     ];
 });

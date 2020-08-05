@@ -3,6 +3,8 @@
 namespace App\JsonApi\Users;
 
 use App\User;
+use Carbon\Carbon;
+use CloudCreativity\LaravelJsonApi\Document\ResourceObject;
 use CloudCreativity\LaravelJsonApi\Eloquent\AbstractAdapter;
 use CloudCreativity\LaravelJsonApi\Pagination\StandardStrategy;
 use Hash;
@@ -25,6 +27,8 @@ class Adapter extends AbstractAdapter
      * @var array
      */
     protected $filterScopes = [];
+
+    protected $dates = ['created-at', 'updated-at', 'birthday'];
 
     /**
      * Adapter constructor.
@@ -50,5 +54,10 @@ class Adapter extends AbstractAdapter
     protected function creating(User $user): void
     {
         $user->password = Hash::make($user->password);
+    }
+
+    protected function deserializeBirthdayField($value)
+    {
+        return Carbon::createFromFormat('d/m/Y', $value);
     }
 }

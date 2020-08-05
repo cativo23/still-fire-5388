@@ -14,17 +14,20 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::namespace('Api')->prefix('api/auth')->group(function () {
+Route::namespace('Api')->prefix('api/v1')->group(function () {
     Route::post('login', 'AuthController@login');
-    Route::post('signup', 'AuthController@signup');
+    Route::post('register', 'AuthController@signup');
+    Route::post('/password-forgot', 'AuthController@forgot');
+    Route::post('/password-reset', 'AuthController@reset');
 
     Route::group([
         'middleware' => 'auth:api'
     ], function() {
-        Route::get('logout', 'AuthController@logout');
+        Route::post('logout', 'AuthController@logout');
         Route::get('user', 'AuthController@user');
     });
 });
+
 
 JsonApi::register('v1')->middleware('auth:api')->withNamespace('Api')->routes(function ($api) {
     $api->resource('products');

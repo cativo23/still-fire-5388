@@ -2,6 +2,7 @@
 
 namespace App\JsonApi\Users;
 
+use App\User;
 use Neomerx\JsonApi\Schema\SchemaProvider;
 
 class Schema extends SchemaProvider
@@ -13,7 +14,7 @@ class Schema extends SchemaProvider
     protected $resourceType = 'users';
 
     /**
-     * @param \App\User $resource
+     * @param User $resource
      *      the domain record being serialized.
      * @return string
      */
@@ -23,7 +24,7 @@ class Schema extends SchemaProvider
     }
 
     /**
-     * @param \App\User $resource
+     * @param User $resource
      *      the domain record being serialized.
      * @return array
      */
@@ -35,7 +36,7 @@ class Schema extends SchemaProvider
             'name'=>$resource->name,
             'email'=>$resource->email,
             'username'=>$resource->username,
-            'birthday'=>$resource->birthday,
+            'birthday'=>$resource->birthday->toAtomString(),
         ];
     }
 }

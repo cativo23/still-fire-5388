@@ -10,6 +10,7 @@ use Illuminate\Contracts\View\Factory;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
+use Illuminate\Support\Carbon;
 use Illuminate\Validation\Rule;
 use Illuminate\View\View;
 use Validator;
@@ -48,11 +49,11 @@ class UserController extends Controller
     {
         $request->validate([
             'name' => ['required', 'string', 'max:191'],
-            'username' => ['required', 'alpha_num', 'max:191', 'unique:users'],
+            'username' => ['required', 'string', 'max:191', 'unique:users'],
             'email' => ['required', 'email', 'max:191', 'unique:users'],
-            'password' => ['required', 'string', 'min:10', 'max:30', 'password'],
+            'password' => ['required', 'string', 'min:8', 'confirmed'],
             'phone_number'=>['required', 'numeric'],
-            'birthday'=>['required', 'date'],
+            'birthday'=>['required', 'date_format:d/m/Y'],
         ]);
 
         $user = new User([
@@ -61,7 +62,7 @@ class UserController extends Controller
             'name' => $request->input('name'),
             'email' => $request->input('email'),
             'phone_number'=>$request->input('phone_number'),
-            'birthday'=>$request->input('birthday'),
+            'birthday'=>Carbon::createFromFormat('d/m/Y', $request->input('data')['attributes']['birthday']),
         ]);
 
         $user ->save();
@@ -103,11 +104,11 @@ class UserController extends Controller
 
         $rules = [
             'name' => ['required', 'string', 'max:191'],
-            'username' => ['required', 'alpha_num', 'max:191', Rule::unique('users')->ignore($user->id)],
+            'username' => ['required', 'string', 'max:191', Rule::unique('users')->ignore($user->id)],
             'email' => ['required', 'email', 'max:191', Rule::unique('users')->ignore($user->id)],
-            'password' => ['nullable', 'string', 'min:10', 'max:30'],
+            'password' => ['nullable', 'string', 'min:8', 'confirmed'],
             'phone_number'=>['required', 'numeric'],
-            'birthday'=>['required', 'date'],
+            'birthday'=>['required', 'date_format:d/m/Y'],
         ];
 
         $validator = Validator::make($request->all(), $rules);
@@ -127,6 +128,8 @@ class UserController extends Controller
         $user->username = $request->input('username');
         $user->email = $request->input('email');
         $user->password = $password;
+        $user->birthday = Carbon::createFromFormat('d/m/Y', $request->input('data')['attributes']['birthday']);
+        $user->phone_number = $request->input('phone_number');
 
         $user->save();
 

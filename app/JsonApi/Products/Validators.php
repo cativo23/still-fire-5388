@@ -1,7 +1,8 @@
 <?php
 
-namespace App\JsonApi\Users;
+namespace App\JsonApi\Products;
 
+use Axiom\Rules\Decimal;
 use CloudCreativity\LaravelJsonApi\Validation\AbstractValidators;
 
 class Validators extends AbstractValidators
@@ -40,19 +41,17 @@ class Validators extends AbstractValidators
      */
     protected function rules($record = null): array
     {
-        $unique_rule_username = $unique_rule_email = 'unique:users';
-
+        $unique_rule_sku = 'unique:products';
         if ($record) {
-            $unique_rule_username = 'unique:users,username,' . $record->id;
-            $unique_rule_email = 'unique:users,email,' . $record->id;
+            $unique_rule_sku = 'unique:products,sku,' . $record->id;
         }
         return [
-            'name' => ['required', 'string', 'max:191'],
-            'username' => ['required', 'string', 'max:191', $unique_rule_username],
-            'email' => ['required', 'email', 'max:191', $unique_rule_email],
-            'password' => ['required', 'string', 'min:8', 'max:30', 'confirmed'],
-            'phone_number' => ['required', 'numeric'],
-            'birthday'=>['required', 'date_format:d-m-Y'],
+            'name'=>['required', 'string'],
+            'sku' =>['string', $unique_rule_sku],
+            'quantity'=>['required', 'integer'],
+            'description'=>['string'],
+            'image'=>['string', 'max:1014'],
+            'price'=>['required', new Decimal(8,2)],
         ];
     }
 
@@ -65,13 +64,6 @@ class Validators extends AbstractValidators
     {
         return [
             //
-        ];
-    }
-
-    protected function messages($record = null): array
-    {
-        return [
-            'name.required' => 'User must have a name.',
         ];
     }
 
