@@ -7,7 +7,7 @@ It is designed to minimize both the number of requests and the amount of data tr
 
 # API Documentation
 
-You can view the API documentation [here](https://documenter.getpostman.com/view/6688576/T1LFoAP9?version=latest)
+You can view the API documentation [here](https://documenter.getpostman.com/view/6688576/T1LFoATW?version=latest)
 
 # Prerequisites
 
